@@ -5,13 +5,12 @@
 
 PACKAGES=(xxd sqlite tldr dotnet-sdk-10.0)
 PACKAGESD=(xxd sqlite3 tealdeer)
-zed_install="curl -fsSL https://zed.dev/install.sh | sh"
-opencode_install="curl -fsSL https://opencode.ai/install | bash"
+
 
 if command -v apt-get &>/dev/null; then
     sudo apt-get install -y ${PACKAGESD[@]}
     # DOTNET
-    cat /etc/*-release | grep -i ubuntu
+    grep -qi ubuntu /etc/*-release
     if [ $? == 0 ]; then
         # ubuntu
         sudo apt-get update && sudo apt-get install -y dotnet-sdk-10.0
@@ -32,21 +31,16 @@ else
     exit 1
 fi
 
-if [ $? != 0 ]; then
-    echo "Something went wrong during the installation"
-    exit 1
-fi
-
 install_zed() {
     echo "Installing Zed editor ..."
-    $zed_install
+    curl -fsSL https://zed.dev/install.sh | sh
     if [ $? != 0 ]; then
         echo "Zed couldn't be installed."
     fi
 }
 install_opencode() {
     echo "Installing opencode"
-    $opencode_install
+    curl -fsSL https://opencode.ai/install | bash
     if [ $? != 0 ]; then
         echo "opencode couldn't be installed."
     fi
@@ -95,8 +89,22 @@ install_vscode() {
 }
 
 install_vscode
+if [ $? != 0 ]; then
+    echo "VS Code installation failed."
+    exit 1
+fi
+
 install_zed
+if [ $? != 0 ]; then
+    echo "Zed installation failed."
+    exit 1
+fi
+
 install_opencode
+if [ $? != 0 ]; then
+    echo "opencode installation failed."
+    exit 1
+fi
 
 echo "----"
 echo "Process completed."
