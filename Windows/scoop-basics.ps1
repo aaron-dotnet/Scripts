@@ -1,14 +1,16 @@
 # My basic scoop packages
 
 scoop update
-scoop install git
 
 # Buckets
 scoop bucket add extras
 scoop bucket add nerd-fonts
 
 # Apps
-scoop install extras/librewolf
+# scoop install extras/librewolf
+
+# Dev
+scoop install python
 
 # Fonts
 scoop install GeistMono-NF
