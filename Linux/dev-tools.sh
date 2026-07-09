@@ -38,6 +38,7 @@ install_zed() {
         echo "Zed couldn't be installed."
     fi
 }
+
 install_opencode() {
     echo "Installing opencode"
     curl -fsSL https://opencode.ai/install | bash
@@ -88,17 +89,17 @@ install_vscode() {
     fi
 }
 
-install_vscode
-if [ $? != 0 ]; then
-    echo "VS Code installation failed."
-    exit 1
-fi
+#install_vscode
+#if [ $? != 0 ]; then
+#    echo "VS Code installation failed."
+#    exit 1
+#fi
 
-install_zed
-if [ $? != 0 ]; then
-    echo "Zed installation failed."
-    exit 1
-fi
+#install_zed
+#if [ $? != 0 ]; then
+#    echo "Zed installation failed."
+#    exit 1
+#fi
 
 install_opencode
 if [ $? != 0 ]; then

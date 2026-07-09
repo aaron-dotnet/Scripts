@@ -1,3 +1,4 @@
+#!/usr/bin/env dotnet
 using System;
 using System.Web;
 using System.Text;
