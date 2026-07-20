@@ -6,9 +6,6 @@ scoop update
 scoop bucket add extras
 scoop bucket add nerd-fonts
 
-# Apps
-# scoop install extras/librewolf
-
 # Dev
 scoop install python
 
